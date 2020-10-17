@@ -14,11 +14,12 @@ using std::vector;
 
 vector<string> people;
 vector<int> ability;
-
+/*
 class Team {
     public:
         string teamName;
-        
+        vector<string> people;
+
         Team(string teamName) {
             this.teamName = teamName;
         }
@@ -28,10 +29,21 @@ class Team {
         void setName(string teamName) {
             this.teamName = teamName;
         }
-}
+};
 vector<Team> teams;
 
+class Employee {
+    public:
+        string employeeName;
+        int ability;
 
+        Employee(string employeeName, int ability) {
+            this.employeeName = employeeName;
+            this.
+        }        
+}
+
+*/
 //string vector printer
 void printStringVector(vector<string> s) {
     for (unsigned int i = 0; i < s.size(); i++) {
@@ -46,7 +58,17 @@ void printIntVector(vector<int> s) {
     }
 }
 
+void print01List(int array[], int n) {
+    for (int i = 0; i < n; ++i) {
+        cout << array[i] << " ";
+    }
+    cout << endl;
+}
+
 void createVectors(int n) {
+
+    //people.clear();
+    //ability.clear();
     people.resize(n); //sized vector with number of employees
     ability.resize(n); //sized vector with number of employees
 
@@ -58,22 +80,22 @@ void createVectors(int n) {
         cin >> singleAbility;
         ability.push_back(singleAbility);
     }
-
+    //check for same thing with people
     ability.erase(ability.begin(), ability.begin() + n);//had to remove the first n elements bc they were all 0's
     
     //printStringVector(people);
     //printIntVector(ability);
 }
-
-public teamGenerator() {
+/*
+void teamGenerator() {
     teams.push_back(new Team("Team A"));
     teams.push_back(new Team("Team B"));
     int n = 0;
     while(people.size() > 0) {
         int highestPersonIndex = findHighestAbility(ability);
-        teams.get(n).people.add(people.get(highestPersonIndex));
-        people.remove(highestPersonIndex);
-        ability.remove(highestPersonIndex);
+        teams.at(n).people.push_back(people.at(highestPersonIndex));
+        people.erase(people.begin() + highestPersonIndex);
+        ability.erase(ability.begin() + highestPersonIndex);
 
         if(n < teams.size()-1) {
             n++;
@@ -83,7 +105,7 @@ public teamGenerator() {
     }
 }
 
-public int findHighestAbility(vector<int> s) {
+int findHighestAbility(vector<int> s) {
     int index = -1;
     int highest = -1;
     for (int i = 0; i < s.size(); ++i) {
@@ -94,15 +116,35 @@ public int findHighestAbility(vector<int> s) {
     }
     return index;
 }
+*/
+
+
+void produce01List(int n, int array[], int i) {
+    if(i==n) {
+        //print01List(array, n);
+        return;
+    }
+    array[i] = 0;
+    produce01List(n, array, i+1);
+    array[i] = 1;
+    produce01List(n, array, i+1);
+}
+
+void assignTeams() {
+    //look in planner
+}
 
 int main(int argc, char* argv[]) {
     int n; //number of employees
     cin >> n;
-
+    int binaryArray[n];
+    produce01List(n, binaryArray, 0);
     createVectors(n);
+    assignTeams();
     if(!cin.good()) {
         return 0;
     }
-    //functions with n
+    //functions
+    //teamGenerator();
 
 }
